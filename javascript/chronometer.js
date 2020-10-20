@@ -5,8 +5,11 @@ class Chronometer {
   }
 
   startClick(callback) {
-    setInterval(() => {
-      this.currentTime ++;
+    this.intervalId = setInterval(() => {
+      this.currentTime++;
+      if (callback) {
+        callback();
+      }
     },1000);
   }
 
@@ -26,14 +29,14 @@ class Chronometer {
     }
   }
   twoDigitsNumber(number) {
-    if (number.toString().length <= 2) {
+    if (number < 10) {
       return `0${number}`;
     } else {
-      return number;
+      return `${number}`;
     }
   }
   stopClick() {
-    clearInterval();
+    clearInterval(this.intervalId);
   }
   resetClick() {
     return this.currentTime = 0;
@@ -43,6 +46,6 @@ class Chronometer {
   } 
 }
 
-let andre = new Chronometer;
+/* let andre = new Chronometer;
 
-andre.splitClick();
+andre.splitClick(); */
